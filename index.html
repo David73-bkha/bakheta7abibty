@@ -40,15 +40,24 @@ body {
 }
 
 #splash h1 {
-  font-size: clamp(55px, 18vw, 110px);
-  font-weight: 900;
-  background: linear-gradient(to bottom, #ffb6c1, #ff4d6d);
+  font-size: clamp(52px, 16vw, 100px);
+  font-weight: 800;
+
+  /* لون أهدى وأنعم */
+  background: linear-gradient(to bottom, #ffd6df, #ff7a92);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+
+  /* نشيل الـ stroke التقيل */
+  -webkit-text-stroke: 0;
+
+  /* ظل ناعم بدل اللمعان */
+  text-shadow: 
+    0 4px 10px rgba(255, 122, 146, 0.25),
+    0 0 20px rgba(255, 122, 146, 0.15);
+
   margin-bottom: 15px;
 }
-
 #splash p {
   font-size: clamp(20px, 6vw, 32px);
   margin-bottom: 35px;
@@ -377,3 +386,4 @@ updateCounter();
 
 </body>
 </html>
+
