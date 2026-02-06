@@ -20,54 +20,54 @@ body {
   overflow-x: hidden;
 }
 
-/* تعديل شاشة البداية لتكون أكثر بروزاً */
+/* شاشة البداية - تحديث شامل */
 #splash {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle, #1a1a2e 0%, #05050a 100%); /* خلفية متدرجة أعمق */
+  background: linear-gradient(180deg, #05050a, #111122);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   text-align: center;
-  padding: 20px;
 }
 
 #splash h1 {
-  font-size: clamp(60px, 15vw, 100px); /* حجم عملاق يتناسب مع الشاشات */
-  color: #ffb6c1;
+  font-size: clamp(70px, 15vw, 110px); /* حجم عملاق */
+  font-weight: 900;
+  /* تدريج الألوان داخل النص */
+  background: linear-gradient(to bottom, #ffb6c1, #ff4d6d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* إطار حول الكلام (Stroke) */
+  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
   margin-bottom: 20px;
-  text-shadow: 0 0 20px rgba(255, 182, 193, 0.5), 0 0 40px rgba(255, 77, 109, 0.3);
-  font-weight: 700;
-  letter-spacing: -2px;
+  filter: drop-shadow(0 10px 15px rgba(255, 77, 109, 0.3));
 }
 
 #splash p {
-  font-size: clamp(22px, 5vw, 32px); /* تكبير النص الوصفي */
-  margin-bottom: 40px;
-  color: #e6e6e6;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-#splash button {
-  padding: 18px 50px; /* زر أكبر وأوضح */
-  border-radius: 50px;
-  border: 2px solid #ff4d6d;
-  background: transparent;
+  font-size: clamp(24px, 5vw, 35px);
   color: #fff;
-  font-size: clamp(18px, 4vw, 24px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
+  opacity: 0.9;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-#splash button:hover {
-  background: #ff4d6d;
-  transform: scale(1.1); /* تأثير نبض عند الوقوف بالماوس */
-  box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
+/* زر الصوت العائم */
+#musicControl {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10000;
+  background: rgba(255, 77, 109, 0.3);
+  border: 1px solid #ff4d6d;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  display: none; /* هيظهر بعد دخول الموقع */
 }
 /* فيديو الخلفية */
 .bg-video {
@@ -81,13 +81,48 @@ body {
   filter: brightness(0.4) blur(1px);
 }
 
+/* تقليل المسافات وتكبير الخطوط */
 section {
-  min-height: 100vh;
+  min-height: 70vh; /* تقليل المسافة بين السكاشن من 100 إلى 70 */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px;
+  padding: 20px;
+  /* تأثير الفيد (Fade) الأساسي */
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-out;
+  transform: translateY(20px);
+}
+
+/* عندما يصبح السكشن مرئياً */
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content {
+  max-width: 850px; /* زيادة عرض المحتوى */
+}
+
+h1 { 
+  color: #ffb6c1; 
+  font-size: clamp(32px, 8vw, 48px); /* تكبير العناوين */
+  margin-bottom: 15px;
+}
+
+p { 
+  color: #e6e6e6; 
+  line-height: 1.6; 
+  font-size: clamp(20px, 5vw, 28px); /* تكبير نصوص الفقرات */
+}
+
+/* تنسيق العداد ليكون بارزاً */
+#counter b {
+  color: #ff4d6d;
+  font-size: 1.2em;
+}
+
 }
 
 .content {
@@ -143,6 +178,7 @@ button:hover { background: #ff1f4b; }
 <!-- موسيقى -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mp3">
+  <button id="musicControl" onclick="toggleMusic()">🎵</button>
 </audio>
 
 <script>
@@ -170,7 +206,7 @@ let startDate = new Date("2024-11-03");
     <h1>اول مرة اشوفك</h1>
     <p>
       من أول لحظة شوفتك فيها،<br>
-      لقيت إنك مش شبه أي حد…<br>
+      لقيتك مش شبه أي حد…<br>
       حاجة بتقولي إنك مش صدفة.
     </p>
   </div>
@@ -208,7 +244,7 @@ let startDate = new Date("2024-11-03");
   <div class="content">
     <h1>رسالة من قلبي</h1>
     <p>
-     اخترتِك إنتي وهفضل اختار وجودك جمبى  <span id="name3"></span> 💖
+    اخترتِك إنتي وهفضل اختار وجودك جمبى يا  <span id="name3"></span> 💖
     </p>
   </div>
 </section>
@@ -288,7 +324,41 @@ function updateCounter() {
 setInterval(updateCounter, 1000);
 updateCounter();
 </script>
+  
+  const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    // لما السكشن يدخل في نطاق الرؤية يظهر (Fade In)
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    } else {
+      // اختياري: لو عايزه يختفي تاني لما تطلع فوق (Fade Out)
+      entry.target.classList.remove("show");
+    }
+  });
+}, { threshold: 0.2 }); // يبدأ التأثير لما يظهر 20% من السكشن
 
+document.querySelectorAll("section").forEach(s => observer.observe(s));
+
+  
+  function enterSite() {
+  document.getElementById("splash").style.display = "none";
+  let music = document.getElementById("bgMusic");
+  music.play();
+  document.getElementById("musicControl").style.display = "block"; // إظهار زر الصوت
+}
+
+function toggleMusic() {
+  let music = document.getElementById("bgMusic");
+  let btn = document.getElementById("musicControl");
+  if (music.paused) {
+    music.play();
+    btn.innerText = "🎵";
+  } else {
+    music.pause();
+    btn.innerText = "🔇";
+  }
+}
 </body>
 </html>
+
 
