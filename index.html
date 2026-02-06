@@ -107,8 +107,18 @@ body {
    السكاشن
 ====================== */
 section {
-  min-height: 80vh;   /* يملأ الشاشة أكتر */
-  padding: 40px 15px;
+  min-height: 80vh;
+  padding: 45px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 1.4s ease,
+    transform 1.4s ease;
 }
 
 section.show {
@@ -118,19 +128,22 @@ section.show {
 
 .content {
   max-width: 95%;
-  padding: 35px 25px;
+  padding: 40px 28px;
 
-  /* بوكس رومانسي */
+  /* بوكس */
   background: rgba(255, 255, 255, 0.06);
   border-radius: 28px;
-
-  /* إطار ناعم */
   border: 1px solid rgba(255, 182, 193, 0.25);
-
-  /* لمسة زجاج */
   backdrop-filter: blur(10px);
 
-  /* ظل خفيف */
+  /* توسيط الكلام جوه البوكس */
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* توسيط أفقي */
+  justify-content: center; /* توسيط رأسي */
+
+  text-align: center;
+
   box-shadow:
     0 10px 30px rgba(0,0,0,0.35),
     inset 0 0 20px rgba(255,182,193,0.05);
@@ -347,13 +360,25 @@ function toggleMusic() {
   }
 }
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add("show");
-  });
-}, { threshold: 0.25 });
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    });
+  },
+  {
+    threshold: 0.35,        // يبدأ التأثير بدري شوية
+    rootMargin: "0px 0px -10% 0px"
+  }
+);
 
-document.querySelectorAll("section").forEach(s => observer.observe(s));
+document.querySelectorAll("section").forEach(sec =>
+  observer.observe(sec)
+);
 
 function startStory() {
   window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
@@ -403,6 +428,7 @@ updateCounter();
 
 </body>
 </html>
+
 
 
 
