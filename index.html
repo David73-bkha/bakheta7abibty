@@ -1,247 +1,203 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
 <title>حكاية حب</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@300;500;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:"Cairo",sans-serif;
-background:linear-gradient(135deg,#1a1a2e,#3a1c4a,#5e2a4a,#2d1b4e);
-background-size:400% 400%;
-animation:gradientBG 15s ease infinite;
-color:#fff;
-overflow-x:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
 }
 
-@keyframes gradientBG{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+body {
+  background: linear-gradient(180deg, #05050a, #111122);
+  color: #fff;
+  overflow-x: hidden;
 }
 
 /* شاشة البداية */
-#splash{
-position:fixed;inset:0;
-background:radial-gradient(circle,#3a1c4a,#1a1a2e);
-display:flex;flex-direction:column;
-justify-content:center;align-items:center;
-z-index:9999;text-align:center;
+#splash {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #05050a, #111122);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
 }
 
-#splash h1{
-font-family:"Reem Kufi",sans-serif;
-font-size:55px;color:#ffb6c1;
-margin-bottom:15px;
-text-shadow:0 0 20px rgba(255,182,193,.6)
+#splash h1 {
+  font-size: 48px;
+  color: #ffb6c1;
+  margin-bottom: 15px;
 }
 
-#splash button{
-padding:14px 40px;border-radius:30px;
-border:none;background:#ff4d6d;
-color:#fff;font-size:18px;cursor:pointer
+#splash p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  opacity: 0.8;
 }
 
-/* زر الموسيقى */
-#musicControl{
-position:fixed;top:20px;left:20px;
-z-index:1000;background:rgba(255,255,255,.15);
-width:50px;height:50px;border-radius:50%;
-border:none;font-size:22px;color:#fff;cursor:pointer
+#splash button {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d6d;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* فيديو الخلفية */
-.bg-video{
-position:fixed;inset:0;width:100%;height:100%;
-object-fit:cover;z-index:-2;
-filter:brightness(.3) blur(2px)
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  filter: brightness(0.4) blur(1px);
 }
 
-/* قلوب */
-.heart{
-position:fixed;color:#ffb6c1;
-pointer-events:none;z-index:-1;
-animation:fall linear forwards
-}
-@keyframes fall{
-to{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* سكشنات */
-section{
-min-height:90vh;
-padding:60px 20px;
-display:flex;align-items:center;justify-content:center;
-text-align:center;
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
 }
 
-.content{
-max-width:750px;
-background:rgba(255,255,255,.05);
-padding:40px;border-radius:30px;
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.1);
-opacity:0;
-transform:translateY(40px);
-filter:blur(6px);
-transition:opacity 1.4s ease,transform 1.4s ease,filter 1.4s ease;
+.content {
+  max-width: 700px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1.5s ease;
 }
 
-.content.show{
-opacity:1;
-transform:translateY(0);
-filter:blur(0);
+.content.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* اعتراف أقوى */
-.confession{
-background:rgba(255,182,193,.08);
-box-shadow:0 0 40px rgba(255,182,193,.25);
+h1 { color: #ffb6c1; }
+p { color: #e6e6e6; line-height: 2; }
+
+button {
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  background: #ff4d6d;
+  color: #fff;
+  cursor: pointer;
 }
 
-/* آخر رسالة هادية */
-.calm-end{
-background:rgba(255,255,255,.035);
-box-shadow:0 0 25px rgba(255,182,193,.12);
-transition:opacity 2.2s ease,transform 2.2s ease,filter 2.2s ease;
-}
+button:hover { background: #ff1f4b; }
 
-h1{
-font-family:"Reem Kufi",sans-serif;
-color:#ffb6c1;margin-bottom:20px;
-font-size:2.5rem
-}
+.hidden { display: none; }
 
-p{
-font-family:"Amiri",serif;
-font-size:1.6rem;line-height:1.9
-}
-
-button{
-margin-top:25px;padding:12px 35px;
-border:none;border-radius:25px;
-background:#ff4d6d;color:#fff;
-font-size:1.1rem;cursor:pointer
-}
-
-.hidden{display:none}
-.footer{margin-top:25px;opacity:.6}
-
-/* شاشة النهاية */
-#finalScreen{
-position:fixed;inset:0;
-background:radial-gradient(circle,#3a1c4a,#1a1a2e);
-display:flex;align-items:center;justify-content:center;
-z-index:99999;opacity:0;pointer-events:none;
-transition:opacity 2s ease;
-}
-
-#finalScreen.show{
-opacity:1;pointer-events:all;
-}
-
-.final-name{
-font-family:"Reem Kufi",sans-serif;
-font-size:5rem;color:#ffb6c1;
-text-shadow:0 0 15px rgba(255,182,193,.6),
-0 0 40px rgba(255,182,193,.3);
-animation:breathe 4s ease-in-out infinite;
-text-align:center;
-}
-
-@keyframes breathe{
-0%,100%{transform:scale(1);opacity:.85}
-50%{transform:scale(1.05);opacity:1}
-}
-
-@media(max-width:600px){
-.final-name{font-size:3.5rem}
+.footer {
+  margin-top: 30px;
+  opacity: 0.7;
 }
 </style>
 </head>
 
 <body>
 
-<button id="musicControl" onclick="toggleMusic()">🔊</button>
-
+<!-- شاشة البداية -->
 <div id="splash">
-<h1 id="splashName"></h1>
-<p>المكان ده معمول علشانك ❤</p>
-<button onclick="enterSite()">ادخلي</button>
+  <h1 id="splashName"></h1>
+  <p>المكان ده معمول علشانك ❤</p>
+  <button onclick="enterSite()">ادخلي</button>
 </div>
 
+<!-- فيديو الخلفية -->
 <video autoplay muted loop class="bg-video">
-<source src="video.mp4" type="video/mp4">
+  <source src="video.mp4" type="video/mp4">
 </video>
 
+<!-- موسيقى -->
 <audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mp3">
+  <source src="music.mp3" type="audio/mp3">
 </audio>
+
+<script>
+/* ⭐ غيّر الاسم من هنا بس */
+let loveName = "بخيتة"
+
+/* ⭐ تاريخ بداية الحب */
+let startDate = new Date("2024-11-03");
+</script>
 
 <section>
   <div class="content">
-    <h1>مش مجرد حب… ده انتى مليتى عليا حياتى وعرف يعنى ايه حب 🤗</h1>
+    <h1>مش مجرد حب… دى حاجة متتوصفش</h1>
     <p>
       ما كنتش اتوقع انى هلاقى نصى التانى بالطريقة دى…<br>
       بس لما دخلتي حياتي يا <span id="name1"></span>،<br>
       وقتها عرفت يعنى ايه حياة وانى مكنتش عايش ❤
     </p>
-<button onclick="startStory()">خلّي الحكاية تبدأ 🎬</button>
-</div>
+    <button onclick="startStory()">خلّي الحكاية تبدأ 🎬</button>
+  </div>
 </section>
 
 <section>
-<div class="content">
-<h1>اول مرة اشوفك</h1>
-<p>
+  <div class="content">
+    <h1>اول مرة اشوفك</h1>
+    <p>
       من أول لحظة شوفتك فيها،<br>
       لقيت إنك مش شبه أي حد…<br>
       حاجة بتقولي إنك مش صدفة.
     </p>
-</div>
+  </div>
 </section>
 
 <section>
-<div class="content">
-<h1>قريبة من قلبي</h1>
-<p>
+  <div class="content">
+    <h1>قريبة من قلبي</h1>
+    <p>
       وجودك بقى راحة،<br>
       كلامك بقى حضن،<br>
       وضحكتك بقت الحاجة اللي بستناها كل يوم.
     </p>
-</div>
+  </div>
 </section>
 
 <section>
-<div class="content">
-<h1>حكايتنا عدت بكل ده ولسه ✨</h1>
-<p id="counter" style="color:#ffb6c1;font-size:2rem"></p>
-</div>
+  <div class="content">
+    <h1>حكايتنا عدت بكل ده ولسه ✨</h1>
+    <p id="counter"></p>
+  </div>
 </section>
 
 <section>
-<div class="content confession">
-<h1>اعتراف 💝</h1>
-<p>
+  <div class="content">
+    <h1>اعتراف 💝</h1>
+    <p>
       يمكن ما بعرفش أقول كلام كبير…<br>
-      بس الحقيقة إنك غيرتي حياتي يا <span id="name2"></span> 🤍
+      بس الحقيقة إنك غيرتي حياتي يا <span id="name2"></span> 💖
     </p>
-</div>
+  </div>
 </section>
 
 <section>
   <div class="content">
     <h1>رسالة من قلبي</h1>
     <p>
-      اخترتِك إنتي وهفضل اختار وجودك جمبى يا <span id="name3"></span> 💖
+      اخترتِك إنتي يا <span id="name3"></span> 💖
     </p>
   </div>
 </section>
-
 
 <section>
   <div class="content">
@@ -249,81 +205,74 @@ text-align:center;
     <input type="password" id="secretCode" placeholder="اكتبي الكود">
     <br>
     <button onclick="checkCode()">فتح الرسالة 💌</button>
-    <p id="secretMessage" class="hidden" style="margin-top:20px; color:#ffb6c1; font-weight: bold;">
+    <p id="secretMessage" class="hidden">
       عمرى ما حبيت ولا هحب زيك ي بخيتة، <br>
-      عمرى ما هنسى محاولاتك عشانى ولا وقفتك عشانى،<br>
-       محتاجك اتسند عليكى واحط دماغى وانا متطمن، <br> 
-      انا بحبك وهفضل احاول عشانك .. انتى حد يستاهل كل الحب اللى ف الدنيا    
+عمرى ما هنسى محاولاتك عشانى ولا وقفتك عشانى،<br>
+انا بحبك وهفضل احاول عشانك .. انتى حد يستاهل كل الحب اللى ف الدنيا    
     </p>
-<div class="footer">اتكتب لقلبك وبس 💕</div>
-</div>
+    <div class="footer">اتكتب لقلبك وبس…</div>
+  </div>
 </section>
 
-<div id="finalScreen">
-<div class="final-name" id="finalName"></div>
-</div>
-
 <script>
-let loveName="بخيتة";
-let startDate=new Date("2024-11-03");
+document.getElementById("name1").innerText = loveName;
+document.getElementById("name2").innerText = loveName;
+document.getElementById("name3").innerText = loveName;
+document.getElementById("splashName").innerText = loveName + " 💌";
 
-name1.innerText=loveName;
-name2.innerText=loveName;
-splashName.innerText=loveName+" 💌";
-finalName.innerText=loveName;
-
-let music=bgMusic;
-
-function enterSite(){
-splash.style.display="none";
-music.play();
+function enterSite() {
+  document.getElementById("splash").style.display = "none";
+  document.getElementById("bgMusic").play();
 }
 
-function toggleMusic(){
-music.paused?music.play():music.pause();
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+});
+document.querySelectorAll(".content").forEach(c => observer.observe(c));
+
+function startStory() {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
 }
 
-function startStory(){
-scrollBy({top:innerHeight,behavior:"smooth"});
-}
+let attempts = 0; // عدد المحاولات
 
-function updateCounter(){
-let days=Math.floor((new Date()-startDate)/(1000*60*60*24));
-counter.innerText=`عدّى ${days} يوم`;
-}
-setInterval(updateCounter,1000);
-updateCounter();
-
-let observer=new IntersectionObserver(e=>{
-e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"));
-},{threshold:.2});
-document.querySelectorAll(".content").forEach(c=>observer.observe(c));
-
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤";
-h.style.left=Math.random()*100+"vw";
-h.style.fontSize=Math.random()*20+10+"px";
-h.style.animationDuration=Math.random()*3+3+"s";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
-
-let attempts = 0; 
 function checkCode() {
   let code = document.getElementById("secretCode").value;
+
   if (code === "15112001") {
     document.getElementById("secretMessage").classList.remove("hidden");
-    document.getElementById("secretMessage").scrollIntoView({behavior: "smooth"});
   } else {
     attempts++;
-    if (attempts === 1) alert("الكود مش صح يا ست البنات 😢");
-    else if (attempts === 2) alert("لسه مش هو كلمة السر 💌\nجربي تاريخ ميلادك يمكن يكون هو 😉");
-    else if (attempts === 3) alert("مش يمكن يكون كدة 15112001 😉😊");
-    else alert("حاولى تانى 🙂");
+
+    if (attempts === 1) {
+      alert("الكود مش صح 😢");
+    } 
+    else if (attempts === 2) {
+      alert("لسه مش هو كلمة السر 💌\nجربي تاريخ ميلادك يمكن يكون هو 😉");
+    } 
+    else if (attempts === 3) {
+      alert("حاولي تاني 😉");
+    }
+    else if (attempts === 4)  {
+      alert("جربى الارقام من غير فاصل طيب 😉😊");
+    } else {
+      attempts++; 
+      alert("حاولى تانى 🙂");
+    }
   }
 }
+
+function updateCounter() {
+  let now = new Date();
+  let diff = now - startDate;
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("counter").innerHTML =
+    `عدّى على حكايتنا <b>${days}</b> يوم `;
+}
+setInterval(updateCounter, 1000);
+updateCounter();
 </script>
 
 </body>
