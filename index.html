@@ -96,17 +96,17 @@ text-align:center;
 }
 
 .content{
-max-width:95%;
-min-height:60vh;
-padding:50px 35px;
+max-width:90%;       /* يبقى ضيق شوية عشان متنفسش النص */
+padding:30px 25px;   /* مساحة كافية للنصوص بدون زيادة */
 background:rgba(255,255,255,.06);
-border-radius:30px;
+border-radius:25px;
 border:1px solid rgba(255,255,255,.12);
 backdrop-filter:blur(12px);
-box-shadow:0 10px 30px rgba(0,0,0,0.35),
-inset 0 0 20px rgba(255,182,193,0.05);
+box-shadow:
+  0 10px 25px rgba(0,0,0,0.3),
+  inset 0 0 15px rgba(255,182,193,0.05);
 opacity:0;
-transform:translateY(40px);
+transform:translateY(30px);
 filter:blur(6px);
 transition:opacity 1.4s ease,transform 1.4s ease,filter 1.4s ease;
 display:flex;
@@ -363,4 +363,5 @@ function checkCode() {
 
 </body>
 </html>
+
 
