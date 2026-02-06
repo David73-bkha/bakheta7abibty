@@ -20,41 +20,55 @@ body {
   overflow-x: hidden;
 }
 
-/* شاشة البداية */
+/* تعديل شاشة البداية لتكون أكثر بروزاً */
 #splash {
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, #05050a, #111122);
+  background: radial-gradient(circle, #1a1a2e 0%, #05050a 100%); /* خلفية متدرجة أعمق */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   text-align: center;
+  padding: 20px;
 }
 
 #splash h1 {
-  font-size: 48px;
+  font-size: clamp(60px, 15vw, 100px); /* حجم عملاق يتناسب مع الشاشات */
   color: #ffb6c1;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.5), 0 0 40px rgba(255, 77, 109, 0.3);
+  font-weight: 700;
+  letter-spacing: -2px;
 }
 
 #splash p {
-  font-size: 18px;
-  margin-bottom: 25px;
-  opacity: 0.8;
+  font-size: clamp(22px, 5vw, 32px); /* تكبير النص الوصفي */
+  margin-bottom: 40px;
+  color: #e6e6e6;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 #splash button {
-  padding: 12px 30px;
-  border-radius: 30px;
-  border: none;
-  background: #ff4d6d;
+  padding: 18px 50px; /* زر أكبر وأوضح */
+  border-radius: 50px;
+  border: 2px solid #ff4d6d;
+  background: transparent;
   color: #fff;
-  font-size: 16px;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
 }
 
+#splash button:hover {
+  background: #ff4d6d;
+  transform: scale(1.1); /* تأثير نبض عند الوقوف بالماوس */
+  box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
+}
 /* فيديو الخلفية */
 .bg-video {
   position: fixed;
@@ -185,7 +199,7 @@ let startDate = new Date("2024-11-03");
     <h1>اعتراف 💝</h1>
     <p>
       يمكن ما بعرفش أقول كلام كبير…<br>
-      بس الحقيقة إنك غيرتي حياتي يا <span id="name2"></span> 💖
+      بس الحقيقة إنك غيرتي حياتي يا <span id="name2"></span> ❤
     </p>
   </div>
 </section>
@@ -194,7 +208,7 @@ let startDate = new Date("2024-11-03");
   <div class="content">
     <h1>رسالة من قلبي</h1>
     <p>
-      اخترتِك إنتي يا <span id="name3"></span> 💖
+     اخترتِك إنتي وهفضل اختار وجودك جمبى  <span id="name3"></span> 💖
     </p>
   </div>
 </section>
@@ -277,3 +291,4 @@ updateCounter();
 
 </body>
 </html>
+
